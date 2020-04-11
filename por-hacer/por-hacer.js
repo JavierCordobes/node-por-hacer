@@ -2,14 +2,16 @@ const fs = require('fs');
 
 let listadoPorHacer = [];
 
-const guardarDB = () => {
 
+
+const guardarDB = () => {
 
     let data = JSON.stringify(listadoPorHacer);
     fs.writeFile('db/data.json', data, err => {
         if (err) throw new Error('No se pudo grabar', err)
     });
 }
+
 
 
 const cargarDB = () => {
@@ -22,6 +24,8 @@ const cargarDB = () => {
         listadoPorHacer = [];
     }
 }
+
+
 
 const crear = (descripcion) => {
 
@@ -39,11 +43,27 @@ const crear = (descripcion) => {
 
     return porHacer;
 }
-const getListado = () => {
 
+
+
+const getListado = (completado) => {
     cargarDB();
-    return listadoPorHacer;
+    completado = completado;
+
+    if (completado != undefined) {
+
+        return listadoPorHacer = listadoPorHacer.filter(tarea => (tarea.completado) === JSON.parse(completado));;
+    } else {
+        return listadoPorHacer;
+    }
+
 }
+
+
+
+
+
+
 
 const actualizar = (descripcion, completado = true) => {
 
