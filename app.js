@@ -34,6 +34,7 @@ switch (comando) {
         break;
 
 
+
     case 'borrar':
         let borrado = porHacer.borrar(argv.descripcion);
         console.log(borrado);
